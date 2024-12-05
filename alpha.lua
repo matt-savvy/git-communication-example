@@ -1,7 +1,8 @@
+local reader = require "reader"
+
 function process(filename)
+    local contents = reader.read_all(filename)
     local words = {}
-    local file = io.input(filename)
-    local contents = io.read("*all")
 
     for word in string.gmatch(contents, "%a+") do
         words[#words+1] = word
