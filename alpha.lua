@@ -1,13 +1,12 @@
 local reader = require "reader"
 
 function process(filename)
-    local contents = reader.read_all(filename)
     local words = {}
-
-    for word in string.gmatch(contents, "%a+") do
-        words[#words+1] = word
+    for line in reader.read_all(filename) do
+        for word in string.gmatch(line, "%a+") do
+            words[#words+1] = word
+        end
     end
-
     table.sort(words)
 
     for _, word in pairs(words) do
